@@ -8,8 +8,9 @@ on:
     types: [opened, reopened, synchronize, edited]
 
 permissions:
-  pull-requests: read
+  pull-requests: write
   contents: read
+  issues: write
 
 jobs:
   validate:
