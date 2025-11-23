@@ -7,6 +7,13 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 ## [Unreleased]
 
 
+
+## [v0.9.6] - 2025-11-23
+
+### Fixed
+- Fixed scheduler pod group status update conflict [#5](https://github.com/gshaibi/KAI-Scheduler/pull/5) [github-actions[bot]](https://github.com/apps/github-actions)
+
+
 ## [v0.9.5] - 2025-11-23
 
 No significant changes documented.
