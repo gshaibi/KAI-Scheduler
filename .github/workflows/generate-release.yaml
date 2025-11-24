@@ -350,7 +350,7 @@ jobs:
             const changelogEntries = fs.readFileSync('changelog_entries.txt', 'utf8');
             
             // Create release body
-            const releaseBody = `# Release ${version}\n\n${changelogEntries}`;
+            const releaseBody = changelogEntries;
             
             // Create the release
             await github.rest.repos.createRelease({

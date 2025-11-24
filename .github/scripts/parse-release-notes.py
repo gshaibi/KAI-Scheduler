@@ -35,9 +35,11 @@ def extract_release_notes_section(pr_body: str) -> Optional[str]:
     if not pr_body:
         return None
     
-    # Match from "## Release Notes" to the next "##" heading or end of string
-    pattern = r'##\s+Release\s+Notes\s*\n(.*?)(?=\n##|\Z)'
-    match = re.search(pattern, pr_body, re.IGNORECASE | re.DOTALL)
+    # Match from "## Release Notes" to the next "## " heading (level 2) or end of string
+    # (?m) enables multiline mode, ^## matches ## at start of line
+    # [\s\S]*? matches any character (including newlines) non-greedily
+    pattern = r'(?m)^##\s+Release\s+Notes\s+([\s\S]*?)(?=^##\s|\Z)'
+    match = re.search(pattern, pr_body, re.IGNORECASE)
     
     if not match:
         return None
