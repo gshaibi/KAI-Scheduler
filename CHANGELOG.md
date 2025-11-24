@@ -9,6 +9,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
 
+
+## [v0.9.8] - 2025-11-24
+
+### Fixed
+- 7 [#12](https://github.com/gshaibi/KAI-Scheduler/pull/12) [gshaibi](https://github.com/gshaibi)
+- 7 [#13](https://github.com/gshaibi/KAI-Scheduler/pull/13) [github-actions[bot]](https://github.com/apps/github-actions)
+
+
 ## [v0.9.7] - 2025-11-24
 
 ### Added
