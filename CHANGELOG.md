@@ -21,6 +21,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
 
+
+## [v0.9.50] - 2025-11-24
+
+### Fixed
+- 23 [#40](https://github.com/gshaibi/KAI-Scheduler/pull/40) [gshaibi](https://github.com/gshaibi)
+- 24 [#42](https://github.com/gshaibi/KAI-Scheduler/pull/42) [gshaibi](https://github.com/gshaibi)
+
+
 ## [v0.9.20-rc.2] - 2025-11-24
 
 No significant changes documented.
