@@ -347,10 +347,36 @@ jobs:
           script: |
             const fs = require('fs');
             const version = '${{ steps.version.outputs.version }}';
+            const previousVersion = '${{ steps.version.outputs.previous_version }}';
             const changelogEntries = fs.readFileSync('changelog_entries.txt', 'utf8');
             
-            // Create release body
-            const releaseBody = changelogEntries;
+            // Generate auto-generated release notes from GitHub
+            console.log(`Generating release notes from ${previousVersion} to ${version}`);
+            const { data: generatedNotes } = await github.rest.repos.generateReleaseNotes({
+              owner: context.repo.owner,
+              repo: context.repo.repo,
+              tag_name: version,
+              previous_tag_name: previousVersion
+            });
+            
+            // Extract only the "New Contributors" and "Full Changelog" sections from generated notes
+            const generatedBody = generatedNotes.body;
+            let additionalSections = '';
+            
+            // Look for "New Contributors" section
+            const newContributorsMatch = generatedBody.match(/## New Contributors[\s\S]*?(?=\n##|\n\*\*Full Changelog\*\*|\Z)/);
+            if (newContributorsMatch) {
+              additionalSections += '\n\n' + newContributorsMatch[0].trim();
+            }
+            
+            // Look for "Full Changelog" link
+            const fullChangelogMatch = generatedBody.match(/\*\*Full Changelog\*\*:.*$/m);
+            if (fullChangelogMatch) {
+              additionalSections += '\n\n' + fullChangelogMatch[0].trim();
+            }
+            
+            // Create release body with custom changelog + GitHub generated sections
+            const releaseBody = `${changelogEntries}${additionalSections}`;
             
             // Create the release
             await github.rest.repos.createRelease({
