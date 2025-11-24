@@ -23,6 +23,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
 
+
+## [v0.6.21-rc.3] - 2025-11-24
+
+No significant changes documented.
+
+
 ## [v0.6.21-rc.2] - 2025-11-24
 
 No significant changes documented.
