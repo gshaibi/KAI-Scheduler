@@ -8,6 +8,14 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
 
+
+## [v0.9.7] - 2025-11-24
+
+### Added
+- Added support for custom runtime classes 4 [#6](https://github.com/gshaibi/KAI-Scheduler/pull/6) [gshaibi](https://github.com/gshaibi)
+- Added support for custom runtime classes 4 [#7](https://github.com/gshaibi/KAI-Scheduler/pull/7) [github-actions[bot]](https://github.com/apps/github-actions)
+
+
 ## [v0.9.6] - 2025-11-23
 
 ### Fixed
