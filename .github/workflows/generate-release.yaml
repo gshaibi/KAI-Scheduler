@@ -66,18 +66,31 @@ jobs:
               basehead: `${previousTag}...${currentTag}`
             });
             
+            console.log(`Found ${comparison.data.commits.length} commits`);
+            
             // Extract PR numbers from commit messages
+            // Strategy: Look for the first PR number in the commit message
+            // This handles merge commits, squash commits, and cherry-picks correctly
             const prNumbers = new Set();
             for (const commit of comparison.data.commits) {
               const message = commit.commit.message;
-              // Match PR numbers in commit messages like "Merge pull request #123" or "(#123)"
-              const matches = message.matchAll(/#(\d+)/g);
-              for (const match of matches) {
-                prNumbers.add(parseInt(match[1]));
+              
+              // Try to find PR number in various formats:
+              // 1. "Merge pull request #123" (merge commits)
+              // 2. "Title (#123)" (squash commits)
+              // 3. "Title (#123) (#456)" (cherry-picks - take first one)
+              const match = message.match(/#(\d+)/);
+              
+              if (match) {
+                const prNumber = parseInt(match[1]);
+                prNumbers.add(prNumber);
+                console.log(`Commit ${commit.sha.substring(0, 7)}: "${message.split('\n')[0]}" -> PR #${prNumber}`);
+              } else {
+                console.log(`Commit ${commit.sha.substring(0, 7)}: No PR reference found in "${message.split('\n')[0]}"`);
               }
             }
             
-            console.log(`Found ${prNumbers.size} PRs`);
+            console.log(`Found ${prNumbers.size} unique PRs`);
             
             // Fetch PR details
             const prs = [];
