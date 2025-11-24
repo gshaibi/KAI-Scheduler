@@ -11,6 +11,20 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
 
+
+## [v0.9.11] - 2025-11-24
+
+### Added
+- 11 [#16](https://github.com/gshaibi/KAI-Scheduler/pull/16) [gshaibi](https://github.com/gshaibi)
+- Added 11 [#16](https://github.com/gshaibi/KAI-Scheduler/pull/16) [gshaibi](https://github.com/gshaibi)
+- Should be ignored [#16](https://github.com/gshaibi/KAI-Scheduler/pull/16) [gshaibi](https://github.com/gshaibi)
+
+### Fixed
+- 11 [#16](https://github.com/gshaibi/KAI-Scheduler/pull/16) [gshaibi](https://github.com/gshaibi)
+- 11 [#16](https://github.com/gshaibi/KAI-Scheduler/pull/16) [gshaibi](https://github.com/gshaibi)
+- Fixed 11 [#16](https://github.com/gshaibi/KAI-Scheduler/pull/16) [gshaibi](https://github.com/gshaibi)
+
+
 ## [v0.9.10] - 2025-11-24
 
 ### Fixed
