@@ -20,6 +20,12 @@ The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
 
 
+
+## [v0.9.20-rc.1] - 2025-11-24
+
+No significant changes documented.
+
+
 ## [v0.6.20] - 2025-11-24
 
 ### Added
