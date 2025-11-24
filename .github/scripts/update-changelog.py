@@ -27,7 +27,7 @@ def update_changelog(changelog_path: str, version: str, date: str, entries_path:
     
     # Read new entries
     with open(entries_path, 'r') as f:
-        changelog_entries = f.read()
+        changelog_entries = f.read().strip()
     
     # Create new version section
     new_section = f"## [{version}] - {date}\n\n{changelog_entries}\n\n"
