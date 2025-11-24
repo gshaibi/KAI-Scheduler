@@ -4,48 +4,11 @@ All notable changes to this project will be documented in this file.
 
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/).
 
-## [Unreleased]
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## [v0.9.50] - 2025-11-24
 
 ### Fixed
 - 23 [#40](https://github.com/gshaibi/KAI-Scheduler/pull/40) [gshaibi](https://github.com/gshaibi)
 - 24 [#42](https://github.com/gshaibi/KAI-Scheduler/pull/42) [gshaibi](https://github.com/gshaibi)
-
-
-## [v0.6.21] - 2025-11-24
-
-No significant changes documented.
-
-
-## [v0.6.21-rc.3] - 2025-11-24
-
-No significant changes documented.
-
-
-## [v0.6.21-rc.2] - 2025-11-24
-
-No significant changes documented.
 
 
 ## [v0.9.20-rc.2] - 2025-11-24
@@ -56,15 +19,6 @@ No significant changes documented.
 ## [v0.9.20-rc.1] - 2025-11-24
 
 No significant changes documented.
-
-
-## [v0.6.20] - 2025-11-24
-
-### Added
-- 18 [#30](https://github.com/gshaibi/KAI-Scheduler/pull/30) [gshaibi](https://github.com/gshaibi)
-
-### Fixed
-- 18 [#30](https://github.com/gshaibi/KAI-Scheduler/pull/30) [gshaibi](https://github.com/gshaibi)
 
 
 ## [v0.9.19] - 2025-11-24
@@ -280,6 +234,30 @@ No significant changes documented.
 
 ### Changed
 - Changed `run.ai/top-owner-metadata` to `kai.scheduler/top-owner-matadata`
+
+## [v0.6.21] - 2025-11-24
+
+No significant changes documented.
+
+
+## [v0.6.21-rc.3] - 2025-11-24
+
+No significant changes documented.
+
+
+## [v0.6.21-rc.2] - 2025-11-24
+
+No significant changes documented.
+
+
+## [v0.6.20] - 2025-11-24
+
+### Added
+- 18 [#30](https://github.com/gshaibi/KAI-Scheduler/pull/30) [gshaibi](https://github.com/gshaibi)
+
+### Fixed
+- 18 [#30](https://github.com/gshaibi/KAI-Scheduler/pull/30) [gshaibi](https://github.com/gshaibi)
+
 
 ## [v0.6.0] - 2025-06-16
 
