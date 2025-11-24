@@ -235,6 +235,11 @@ No significant changes documented.
 ### Changed
 - Changed `run.ai/top-owner-metadata` to `kai.scheduler/top-owner-matadata`
 
+## [v0.6.51] - 2025-11-24
+
+### Fixed
+- 26 [#47](https://github.com/gshaibi/KAI-Scheduler/pull/47) [gshaibi](https://github.com/gshaibi)
+
 ## [v0.6.50] - 2025-11-24
 
 ### Fixed
