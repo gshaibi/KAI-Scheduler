@@ -21,7 +21,7 @@ jobs:
       - name: Set up Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.23.4'
+          go-version: '1.24.4'
 
       - name: Run validation
         run: make validate
@@ -39,114 +39,28 @@ jobs:
     name: Code Coverage Report
     runs-on: ubuntu-latest
     needs: validate-and-test
-    permissions:
-      contents: read
-      actions: read
-      pull-requests: write
     steps:
       - uses: fgrosse/go-coverage-report@8c1d1a09864211d258937b1b1a5b849f7e4f2682
+        id: coverage_reporter
         with:
           coverage-artifact-name: "code-coverage"
           coverage-file-name: "coverage.out"
           root-package: "github.com/NVIDIA/KAI-scheduler"
           github-baseline-workflow-ref: update-coverage-badge.yaml
-
-  build:
-    name: Build
-    runs-on: ubuntu-latest
-    outputs:
-      package_version: ${{ steps.package_version.outputs.PACKAGE_VERSION }}
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Extract package version
-        id: package_version
-        run: |
-          PACKAGE_VERSION=0.0.0-$(git rev-parse --short HEAD)
-          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_ENV
-          echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
-          echo $PACKAGE_VERSION
-
-      - name: Set up Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.23.4'
-
-      - name: Set up Docker Buildx
-        uses: docker/setup-buildx-action@v3
-
-      - name: Create image cache directory
-        run: mkdir images
-
-      - name: Cache for docker images and helm chart
-        uses: actions/cache@v4
-        with:
-          path: images
-          key:  images-${{ github.sha }}
-
-      - name: Build docker images
-        run: |
-          make build DOCKER_BUILDX_ADDITIONAL_ARGS=--load VERSION=$PACKAGE_VERSION
-          docker save $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $PACKAGE_VERSION) | gzip > images/docker_images.tgz
-
-      - name: Build helm chart
-        run: |
-          helm package ./deployments/kai-scheduler -d ./charts --app-version $PACKAGE_VERSION --version $PACKAGE_VERSION
-          cp charts/kai-scheduler-$PACKAGE_VERSION.tgz images/
-
-
-  e2e-tests:
-    name: Run E2E Tests
-    needs: [ build ]
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Cache restore
-        uses: actions/cache/restore@v4
-        with:
-          path: images
-          key:  images-${{ github.sha }}
-
-      - name: Create k8s Kind Cluster
-        uses: helm/kind-action@v1.10.0
-        with:
-          cluster_name: kind
-          version: v0.26.0
-          config: ./hack/e2e-kind-config.yaml
-
-      - name: Load docker images to kind
-        working-directory: images
+          skip-comment: true
+      - name: Save coverage report to file
         env:
-          PACKAGE_VERSION: ${{ needs.build.outputs.package_version }}
-        run: |
-          docker load < docker_images.tgz
-          for image in $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $PACKAGE_VERSION); do
-            kind load docker-image $image --name kind
-          done
-
-      - name: Deploy fake gpu operator
-        run: |
-          helm upgrade -i gpu-operator oci://ghcr.io/run-ai/fake-gpu-operator/fake-gpu-operator --namespace gpu-operator --create-namespace \
-              --version 0.0.62 --values ./hack/fake-gpu-operator-values.yaml --wait
-
-      - name: install KAI-scheduler
-        env:
-          PACKAGE_VERSION: ${{ needs.build.outputs.package_version }}
-        run: |
-          helm upgrade -i kai-scheduler ./images/kai-scheduler-$PACKAGE_VERSION.tgz -n kai-scheduler --create-namespace \
-            --set "global.gpuSharing=true" --debug --wait
-      - name: Set up Go
-        uses: actions/setup-go@v2
+          REPORT_BODY: ${{ steps.coverage_reporter.outputs.coverage_report }}
+        run: echo "$REPORT_BODY" > coverage-report.txt
+      - name: Upload coverage report
+        uses: actions/upload-artifact@v4
         with:
-          go-version: 1.22
-
-      - name: Install ginkgo
-        run: |
-          go install github.com/onsi/ginkgo/v2/ginkgo@v2.19.0
-
-      - name: Run e2e tests
-        run: |
-          ginkgo -r --keep-going --randomize-all --randomize-suites --trace -vv ./test/e2e/suites --label-filter '!autoscale', '!scale'
+          name: coverage-report-for-comment
+          path: coverage-report.txt
+      - name: Save PR number
+        run: echo "${{ github.event.number }}" > pr_number.txt
+      - name: Upload PR number
+        uses: actions/upload-artifact@v4
+        with:
+          name: pr-number-for-comment
+          path: pr_number.txt
