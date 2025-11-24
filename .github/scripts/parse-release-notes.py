@@ -107,6 +107,11 @@ def parse_release_notes(content: str) -> Dict[str, List[str]]:
                 current_category = category
                 if current_category not in categories:
                     categories[current_category] = []
+            else:
+                # Reset current_category for invalid categories
+                # This prevents entries under invalid categories from being
+                # added to the previous valid category
+                current_category = None
             continue
         
         # Check if this is a list item
