@@ -176,9 +176,17 @@ def format_for_changelog(categories: Dict[str, List[str]], pr_number: int, pr_ur
     for category in category_order:
         if category not in categories:
             continue
-            
+        
         lines.append(f"### {category}")
+        # Deduplicate entries while preserving order
+        seen = set()
+        unique_entries = []
         for entry in categories[category]:
+            if entry not in seen:
+                seen.add(entry)
+                unique_entries.append(entry)
+        
+        for entry in unique_entries:
             # Add PR link and author attribution if not already present
             if f"#{pr_number}" not in entry and pr_url not in entry:
                 lines.append(f"- {entry} [#{pr_number}]({pr_url}) [{author}]({author_url})")
