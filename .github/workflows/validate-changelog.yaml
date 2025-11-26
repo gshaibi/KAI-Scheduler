@@ -16,20 +16,16 @@ jobs:
     runs-on: ubuntu-latest
     if: ${{ !contains(github.event.pull_request.labels.*.name, 'skip-changelog') }}
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v6
+      
+      - uses: tj-actions/changed-files@24d32ffd492484c1d75e0c0b894501ddb9d30d62 # v47
+        id: changed-files
         with:
-          fetch-depth: 0
+          files: CHANGELOG.md
 
       - name: Check CHANGELOG.md updated
+        if: steps.changed-files.outputs.any_changed != 'true'
         run: |
-          # Get the list of changed files in the PR
-          CHANGED_FILES=$(git diff --name-only origin/${{ github.base_ref }}...HEAD)
-          
-          if echo "$CHANGED_FILES" | grep -q "^CHANGELOG.md$"; then
-            echo "::notice::CHANGELOG.md has been updated"
-          else
-            echo "::error::CHANGELOG.md has not been updated. Please update the changelog or add the 'skip-changelog' label to opt out."
-            exit 1
-          fi
+          echo "::error::CHANGELOG.md has not been updated. Please update the changelog or add the 'skip-changelog' label to opt out."
+          exit 1
 
