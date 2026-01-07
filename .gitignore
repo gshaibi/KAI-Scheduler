@@ -10,3 +10,4 @@ coverage.out
 
 cmd/fairshare-simulator/fairshare-simulator
 cmd/snapshot-tool/snapshot-tool
+govulncheck.out
