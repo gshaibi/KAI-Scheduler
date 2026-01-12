@@ -55,7 +55,7 @@ jobs:
             go-docker-${{ runner.os }}-
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.24.4'
           cache: true
@@ -134,7 +134,7 @@ jobs:
             go-docker-${{ runner.os }}-
 
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.24.4'
           cache: true
@@ -255,7 +255,7 @@ jobs:
             --set "global.gpuSharing=true" --set "global.registry=localhost:30100" --debug --wait
       
       - name: Set up Go
-        uses: actions/setup-go@v5
+        uses: actions/setup-go@v6
         with:
           go-version: '1.24.4'
           cache: true
