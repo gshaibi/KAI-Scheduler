@@ -26,7 +26,7 @@ require (
 	github.com/prometheus/common v0.66.1
 	github.com/ray-project/kuberay/ray-operator v1.4.2
 	github.com/run-ai/kwok-operator v0.0.0-20240926063032-05b6364bc7c7
-	github.com/samber/lo v1.47.0
+	github.com/samber/lo v1.52.0
 	github.com/spf13/pflag v1.0.10
 	github.com/stretchr/testify v1.11.1
 	github.com/xhit/go-str2duration/v2 v2.1.0
