@@ -1,21 +1,15 @@
 ---
 title: "Scheduling Queues"
 linkTitle: "Scheduling Queues"
-weight: 20
-description: "Scheduling queues are the core resource management primitive in KAI Scheduler, providing hierarchical resource allocation with quota guarantees and priority-..."
+weight: 10
+description: "The core resource-management primitive: hierarchical queues with quota guarantees, over-quota weights, and limits."
 ---
 
-Scheduling queues are the core resource management primitive in KAI Scheduler, providing hierarchical resource allocation with quota guarantees and priority-based distribution.
+A **queue** is the core resource-management primitive in KAI Scheduler. Queues typically represent organizational units — teams, projects, or initiatives — and every workload must belong to a queue to be scheduled.
 
-Only leaf queues (queues with no children) can be used for scheduling jobs. Parent queues serve as organizational units for resource distribution among their child queues.
+Queues form a hierarchy. Only **leaf queues** (queues with no children) can be used to schedule workloads; **parent queues** are organizational units that distribute resources among their children.
 
-## Table of Contents
-- [Queue Attributes](#queue-attributes)
-- [API Reference](#api-reference)
-- [Resource Configuration](#resource-configuration)
-- [Examples](#examples)
-
-## Queue Attributes
+## Queue attributes
 
 | Attribute | Description | Units |
 |-----------|-------------|-------|

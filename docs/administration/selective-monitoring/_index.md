@@ -2,7 +2,7 @@
 title: "Selective Pod Monitoring"
 linkTitle: "Selective Monitoring"
 weight: 50
-description: "In some environments, admins may prefer to deploy KAI Scheduler in a limited scope, monitoring only a subset of pods, to avoid unintended interactions with u..."
+description: "Deploy KAI Scheduler in a limited scope, managing only a subset of pods and namespaces to avoid interfering with other schedulers."
 ---
 
 In some environments, admins may prefer to deploy KAI Scheduler in a limited scope, monitoring only a subset of pods, to avoid unintended interactions with unrelated workloads. 

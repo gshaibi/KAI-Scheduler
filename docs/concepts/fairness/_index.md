@@ -9,13 +9,6 @@ KAI Scheduler implements hierarchical fair-share scheduling using multi-level qu
 
 > **Prerequisites**: Familiarity with [Scheduling Queues](../queues/_index.md) concepts
 
-## Table of Contents
-- [What is fair-share?](#what-is-fair-share)
-- [Resource Allocation](#resource-allocation)
-- [Fair-Share Algorithm](#fair-share-algorithm)
-- [Reclaim Resources](#reclaim-resources)
-- [Configuration](#configuration)
-
 ## What is fair-share?
 Fair-share based allocation of resources is an algorithm or algorithms used to determine how to distribute resources between
 consumers with the intent of achieving equal or "fair" distribution of resources.

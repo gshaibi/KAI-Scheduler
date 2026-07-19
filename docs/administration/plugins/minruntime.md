@@ -2,7 +2,7 @@
 title: "MinRuntime Plugin"
 linkTitle: "MinRuntime Plugin"
 weight: 10
-description: "The MinRuntime plugin for KAI-Scheduler provides runtime protection for jobs by preventing preemption or resource reclamation of jobs until they have run for..."
+description: "Protect jobs from preemption or resource reclamation until they have run for a configured minimum duration."
 ---
 
 ## Overview

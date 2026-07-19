@@ -2,7 +2,8 @@
 title: KAI Scheduler
 ---
 
-{{< blocks/cover title="KAI Scheduler" image_anchor="top" height="auto" color="primary" >}}
+{{< blocks/cover title="KAI Scheduler" image_anchor="top" height="auto" >}}
+<img class="td-cover__logo" src="assets/kai-logo-dark.png" alt="KAI Scheduler" />
 <p class="lead mt-3">A Kubernetes scheduler optimized for GPU resource allocation in AI &amp; ML workloads</p>
 
 <a class="btn btn-lg btn-light me-3 mb-4" href="docs/">

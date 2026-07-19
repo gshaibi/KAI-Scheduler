@@ -2,7 +2,7 @@
 title: "HAMi Resource Isolation"
 linkTitle: "HAMi Isolation"
 weight: 10
-description: "KAI Scheduler's GPU sharing feature allows multiple pods to share a single GPU, but by default it does not enforce memory limits at the CUDA level — a contai..."
+description: "Enforce per-container GPU memory limits at the CUDA level for shared GPUs using HAMi-core isolation."
 ---
 
 KAI Scheduler's GPU sharing feature allows multiple pods to share a single GPU, but by default it does **not** enforce memory limits at the CUDA level — a container requesting 2000 MiB could still see (and use) the full GPU memory via `nvidia-smi` and CUDA APIs.

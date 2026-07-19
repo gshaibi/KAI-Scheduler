@@ -2,7 +2,7 @@
 title: "Breaking changes & Migration Guides"
 linkTitle: "Migration Guides"
 weight: 80
-description: "In this section, we will collect and describe API changes (or other breaking changes), describe the migration process and suggest backwards compatibility opt..."
+description: "API and other breaking changes between releases, with migration steps and backwards-compatibility options."
 ---
 
 In this section, we will collect and describe API changes (or other breaking changes), describe the migration process and suggest backwards compatibility options for upgrades from earlier versions.
