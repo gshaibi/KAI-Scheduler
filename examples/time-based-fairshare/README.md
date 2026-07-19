@@ -149,8 +149,8 @@ kubectl exec -n kai-scheduler deployment/kai-scheduler-default -- wget -q -O- ht
 
 ## Further Reading
 
-- [Time-Based Fairshare Documentation](../../docs/time-based-fairshare/README.md)
-- [Fairness Concepts](../../docs/fairness/README.md)
+- [Time-Based Fairshare Documentation](../../docs/user-guide/time-based-fairshare/_index.md)
+- [Fairness Concepts](../../docs/concepts/fairness/_index.md)
 - [Time-Based Fairshare Design Document](../../docs/developer/designs/time-based-fairshare/time-based-fairshare.md)
 - [Time-Based Fairshare Simulator](../../cmd/time-based-fairshare-simulator/README.md)
 

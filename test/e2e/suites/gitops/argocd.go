@@ -36,7 +36,7 @@ var applicationGVK = schema.GroupVersionKind{
 	Kind:    "Application",
 }
 
-// kaiApplication mirrors the Application example in docs/gitops/README.md,
+// kaiApplication mirrors the Application example in docs/administration/gitops/_index.md,
 // plus e2e-cluster values (gpu sharing, prometheus). GITOPS_KAI_REGISTRY
 // overrides the chart's image registry when the images were loaded into the
 // in-cluster registry (CI, local --local-images-build runs); when unset the

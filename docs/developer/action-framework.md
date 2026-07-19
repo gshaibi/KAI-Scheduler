@@ -1,4 +1,9 @@
-# Scheduler Actions Framework
+---
+title: "Scheduler Actions Framework"
+linkTitle: "Action Framework"
+weight: 20
+description: "The scheduler uses an action-based system to make scheduling decisions."
+---
 
 ## Overview
 The scheduler uses an action-based system to make scheduling decisions. At a high level, actions generate [scenarios](#1-scenarios), which are simulated and validated ([simulation](#2-simulation)) before being committed to the cluster using a [statement](#3-statement). This allows for complex scheduling logic while maintaining consistency and allowing rollback of failed operations, without needlessly interrupting pods.

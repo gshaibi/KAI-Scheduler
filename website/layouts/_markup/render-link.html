@@ -1,0 +1,24 @@
+{{- /*
+  Resolve repo-relative Markdown links to site URLs so the same source renders
+  correctly on GitHub and on the Hugo site. Links are resolved from the source
+  file path (GitHub semantics) to the target page's permalink, which works for
+  both section (_index.md) and leaf (foo.md) pages. Links whose target is not a
+  site page (e.g. ../examples/, ../cmd/...) are left untouched.
+*/ -}}
+{{- $dest := .Destination -}}
+{{- $u := urls.Parse $dest -}}
+{{- $external := or $u.IsAbs (strings.HasPrefix $dest "//") (strings.HasPrefix $dest "mailto:") (strings.HasPrefix $dest "#") -}}
+{{- $href := $dest -}}
+{{- if and (not $external) (strings.HasSuffix $u.Path ".md") -}}
+  {{- with .Page.File -}}
+    {{- $abs := path.Join (path.Dir .Path) $u.Path -}}
+    {{- $abs = strings.TrimSuffix "/_index.md" $abs -}}
+    {{- $abs = strings.TrimSuffix "/README.md" $abs -}}
+    {{- $abs = strings.TrimSuffix ".md" $abs -}}
+    {{- with site.GetPage (printf "/%s" $abs) -}}
+      {{- $href = .RelPermalink -}}
+      {{- with $u.Fragment }}{{ $href = printf "%s#%s" $href . }}{{ end -}}
+    {{- end -}}
+  {{- end -}}
+{{- end -}}
+<a href="{{ $href | safeURL }}"{{ with .Title }} title="{{ . }}"{{ end }}{{ if $external }} rel="noopener"{{ end }}>{{ .Text | safeHTML }}</a>

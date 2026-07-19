@@ -6,11 +6,11 @@ post-install/post-upgrade hook Job (see hooks/post/kai-config-deployer/)
 using kubectl apply --server-side, so it is NOT a Helm release resource.
 With kaiConfig.render=true the CR is rendered inline as a regular release
 resource instead, for GitOps/ArgoCD installs where hook-applied resources
-are untracked (no drift detection, no selfHeal). See docs/gitops/README.md.
+are untracked (no drift detection, no selfHeal). See docs/administration/gitops/_index.md.
 */ -}}
 {{- $kaiConfig := .Values.kaiConfig | default dict -}}
 {{- if and $kaiConfig.render .Values.kaiConfigDeployer.enabled -}}
-{{- fail "kaiConfig.render and kaiConfigDeployer.enabled are mutually exclusive. For GitOps/ArgoCD set kaiConfigDeployer.enabled=false and kaiConfig.render=true. See docs/gitops/README.md." -}}
+{{- fail "kaiConfig.render and kaiConfigDeployer.enabled are mutually exclusive. For GitOps/ArgoCD set kaiConfigDeployer.enabled=false and kaiConfig.render=true. See docs/administration/gitops/_index.md." -}}
 {{- end -}}
 {{- if $kaiConfig.render }}
 {{ include "kai-scheduler.kai-config" . }}

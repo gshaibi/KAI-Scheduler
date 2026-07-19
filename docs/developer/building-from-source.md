@@ -1,4 +1,10 @@
-# Building from Source
+---
+title: "Building from Source"
+linkTitle: "Building from Source"
+weight: 60
+description: "To build and deploy KAI Scheduler from source, follow these steps:"
+---
+
 To build and deploy KAI Scheduler from source, follow these steps:
 
 1. Clone the repository:

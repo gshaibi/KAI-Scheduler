@@ -1,4 +1,9 @@
-# KAI Scheduler Scale Tests
+---
+title: "KAI Scheduler Scale Tests"
+linkTitle: "Scale Tests"
+weight: 70
+description: "Scale tests validate KAI scheduler performance and correctness at large cluster sizes (hundreds to thousands of nodes)."
+---
 
 ## Overview
 

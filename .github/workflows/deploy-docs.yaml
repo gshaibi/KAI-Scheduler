@@ -1,0 +1,81 @@
+# Copyright 2026 NVIDIA CORPORATION
+# SPDX-License-Identifier: Apache-2.0
+
+# Builds the Hugo + Docsy documentation website (website/) from the docs/ content
+# and publishes it to the gh-pages branch.
+#
+# One-time repository setup required:
+#   Settings -> Pages -> Source: "Deploy from a branch"
+#     Branch: gh-pages / (root)
+#
+# The site is served at https://<owner>.github.io/<repo>/ (baseURL is computed
+# at build time from the deploying repository, so forks work without edits).
+
+name: Deploy Docs Site
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "website/**"
+      - ".github/workflows/deploy-docs.yaml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  build-deploy:
+    name: Build and deploy
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v7
+        with:
+          fetch-depth: 0 # for enableGitInfo (lastmod)
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+
+      - name: Setup Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: "1.23"
+
+      - name: Setup Hugo
+        uses: peaceiris/actions-hugo@v3
+        with:
+          # Docsy v0.15+ requires Hugo extended >= 0.146.0
+          hugo-version: "0.164.0"
+          extended: true
+
+      - name: Install PostCSS toolchain
+        working-directory: website
+        run: npm install
+
+      # Hugo resolves the Docsy module automatically from go.mod/go.sum at build
+      # time, so the versions are pinned and reproducible (no `hugo mod get`).
+      - name: Build site
+        working-directory: website
+        run: |
+          OWNER="$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')"
+          REPO="${GITHUB_REPOSITORY#*/}"
+          BASEURL="https://${OWNER}.github.io/${REPO}/"
+          echo "Building with baseURL: ${BASEURL}"
+          hugo --minify --baseURL "${BASEURL}"
+
+      - name: Deploy to gh-pages
+        uses: peaceiris/actions-gh-pages@v4
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: website/public
+          publish_branch: gh-pages
+          # Preserve any sibling paths (e.g. scale-tests/, dev/bench/) if present.
+          keep_files: true
