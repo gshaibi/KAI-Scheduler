@@ -2,7 +2,7 @@
 title: "Scheduler Config Customization"
 linkTitle: "Scheduler Config Customization"
 weight: 20
-description: "Each shard's scheduler is configured with a set of plugins (scoring, filtering, and ordering logic) and actions (scheduling operations like allocate, preempt..."
+description: "Customize the plugins and actions each scheduling shard runs via the SchedulingShard spec."
 ---
 
 Each shard's scheduler is configured with a set of **plugins** (scoring, filtering, and ordering logic) and **actions** (scheduling operations like allocate, preempt, reclaim). You can customize both per-shard using the `plugins` and `actions` fields on the `SchedulingShard` spec.

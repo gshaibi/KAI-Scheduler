@@ -1,21 +1,11 @@
 ---
 title: "Scheduling Deep Dive"
 linkTitle: "Scheduling Deep Dive"
-weight: 10
-description: "This guide explains how KAI Scheduler's core concepts work together."
+weight: 40
+description: "How queues, priority, fairness, and reclaim interact end-to-end across a scheduling cycle."
 ---
 
 This guide explains how KAI Scheduler's core concepts work together. Each concept has its own reference documentation ([queues](../queues/_index.md), [priority](../../user-guide/workload-priority/_index.md), [fairness](../fairness/_index.md), [shards](../../administration/operator/scheduling-shards.md)); this guide focuses on **how they interact** and builds up from foundational concepts to advanced behavior.
-
-## Table of Contents
-- [Queues and Resource Guarantees](#queues-and-resource-guarantees)
-- [Queue Priority: Distributing Resources Between Queues](#queue-priority-distributing-resources-between-queues)
-- [Workload Priority: Scheduling Within a Queue](#workload-priority-scheduling-within-a-queue)
-- [Reclaim: Recovering Resources Between Queues](#reclaim-recovering-resources-between-queues)
-- [Common Scenarios & FAQ](#common-scenarios--faq)
-- [Scheduling Shards](#scheduling-shards)
-- [The Scheduling Cycle](#the-scheduling-cycle)
-- [Related Documentation](#related-documentation)
 
 ## Queues and Resource Guarantees
 
