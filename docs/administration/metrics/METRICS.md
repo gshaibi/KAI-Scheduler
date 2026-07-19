@@ -29,7 +29,7 @@ Metrics related to Queue resource management and resource quota tracking.
 - **`queue_metadata_name`**: The Queue resource's `metadata.name`. Always populated.
 - **`queue_display_name`**: The Queue's `spec.displayName`. Empty string when unset.
 - **`endpoint`**: Prometheus scrape endpoint path (e.g., `metrics`)
-- **`instance`**: Pod IP:Port (e.g., `10.244.1.5.8080`)
+- **`instance`**: Pod IP:Port (e.g., `10.244.1.5:8080`)
 - **`job`**: Scrape job name from Prometheus config (e.g., `queue-controller`)
 - **`namespace`**: Kubernetes namespace (e.g., `kai-scheduler`)
 - **`pod`**: Pod name (e.g., `queue-controller-b8c6ff5b4-ghzd`)

@@ -9,7 +9,7 @@ KAI Scheduler supports scheduling different types of workloads. Some workloads a
 
 ## BatchJob
 To run a simple batch job with multiple pods that will be scheduled separately, run the following command:
-```
+```bash
 kubectl apply -f batch-job.yaml
 ```
 This will create 2 pods that will be scheduled separately. Both pods will either run at the same time or sequentially, depending on the available resources in the cluster.
@@ -17,14 +17,14 @@ This will create 2 pods that will be scheduled separately. Both pods will either
 
 ## Min Member Override
 To require a minimum number of pods to be scheduled together (gang scheduling) for a batch Job or JobSet, use the `kai.scheduler/batch-min-member` annotation on the Job or JobSet resource:
-```
+```bash
 kubectl apply -f batch-job-min-member.yaml
 ```
 This will create a job with parallelism of 6, but requires at least 2 pods to be scheduled together before any pod starts running. This is useful for workloads like hyperparameter optimization (HPO) where you want a minimum level of parallelism but don't need all pods running simultaneously.
 
 For JobSets, KAI creates a single PodGroup per JobSet with a parent SubGroup per replicatedJob and a leaf SubGroup per replica. The `kai.scheduler/batch-min-member` annotation behaves at two levels:
 
-- On the **JobSet** resource: overrides the root `minSubGroup` (how many top-level subgroups must be schedulable). If the user didn't set an override, the value will be 1 if the jobset has an "InOrder" policy. Otherwise ("AnyOrder"), the value will be equal to the amount of replicatedJob provided in the jobset. 
+- On the **JobSet** resource: overrides the root `minSubGroup` (how many top-level subgroups must be schedulable). If the user didn't set an override, the value will be 1 if the jobset has an "InOrder" policy. Otherwise ("AnyOrder"), the value will be equal to the number of replicatedJobs provided in the JobSet.
 - On a **replicatedJob's `template.metadata.annotations`**: overrides the `minMember` of every leaf SubGroup of that replicatedJob. Defaults to `template.spec.parallelism` when absent.
 
 ## External PodGroups
@@ -58,7 +58,7 @@ This requires the [kubeflow-training-operator-v1](https://www.kubeflow.org/docs/
 
 ### Instructions
 Apply the following command to create a sample PyTorchJob with a master pod and two worker pods:
-```
+```bash
 kubectl apply -f pytorch-job.yaml
 ```
 Since gang scheduling is used, all 3 pods will be scheduled together, or none will be scheduled until resources become available in the cluster. 

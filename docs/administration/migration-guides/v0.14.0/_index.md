@@ -56,7 +56,7 @@ carry no `prometheus` key. The v0.14.0 chart template accesses
 
 **Workaround — pass `prometheus.enabled` explicitly:**
 ```bash
-helm upgrade kai-scheduler oci://ghcr.io/nvidia/kai-scheduler/kai-scheduler \
+helm upgrade kai-scheduler oci://ghcr.io/kai-scheduler/kai-scheduler/kai-scheduler \
   --version v0.14.0 -n kai-scheduler \
   --reuse-values \
   --set prometheus.enabled=false
@@ -83,7 +83,7 @@ for details and the downgrade procedure.
 
 2. **Run the upgrade** with the prometheus workaround:
    ```bash
-   helm upgrade kai-scheduler oci://ghcr.io/nvidia/kai-scheduler/kai-scheduler \
+   helm upgrade kai-scheduler oci://ghcr.io/kai-scheduler/kai-scheduler/kai-scheduler \
      --version v0.14.0 -n kai-scheduler \
      --reuse-values \
      --set prometheus.enabled=false
@@ -120,7 +120,7 @@ Since `helm rollback` is not supported, use uninstall + reinstall.
 
 2. **Reinstall v0.13.x:**
    ```bash
-   helm install kai-scheduler oci://ghcr.io/nvidia/kai-scheduler/kai-scheduler \
+   helm install kai-scheduler oci://ghcr.io/kai-scheduler/kai-scheduler/kai-scheduler \
      --version v0.13.4 -n kai-scheduler
    ```
 

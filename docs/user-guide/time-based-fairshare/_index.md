@@ -9,7 +9,7 @@ Time based fairshare is a feature in KAI-Scheduler which makes use of historical
 
 1. All else being equal, queues with higher past usage will get to run jobs after queues with lower usage
 2. Reclaim based on usage: queues which are starved over time will reclaim resources from queues which used a lot of resources.
-    1. Note: this does not effect in-quota allocation: deserved quota still takes precedence over time-based fairshare
+    1. Note: this does not affect in-quota allocation: deserved quota still takes precedence over time-based fairshare
 
 
 > **Prerequisites**: Familiarity with [fairness](../../concepts/fairness/_index.md)
@@ -39,11 +39,11 @@ Where:
 
 #### Normalization to cluster capacity
 
-The aggregated usage for each queue is then normalized to the **cluster capacity** at the relevant time period: the scheduler looks at the available resources in the cluster for that time period, and normalizes all resource usage to it. For example, in a cluster with 10 GPUs, and considering a time period of 10 hours, a queue which consumed 24 GPU hours (wether it's 8 GPUs for 3 hours, or 12 GPUs for 2 hours), will get a normalized usage score of 0.24 (used 24 GPU hours out of a potential 100). This normalization ensures that a small amount of resource usage relative to the cluster size will not result in a heavy penalty.
+The aggregated usage for each queue is then normalized to the **cluster capacity** at the relevant time period: the scheduler looks at the available resources in the cluster for that time period, and normalizes all resource usage to it. For example, in a cluster with 10 GPUs, and considering a time period of 10 hours, a queue which consumed 24 GPU hours (whether it's 8 GPUs for 3 hours, or 12 GPUs for 2 hours), will get a normalized usage score of 0.24 (used 24 GPU hours out of a potential 100). This normalization ensures that a small amount of resource usage relative to cluster capacity will not result in a heavy penalty.
 
 ### Effect on fair share
 
-Usually, over quota resources are assigned to each queue proportionally to it's Over Quota Weight. With time-based fairshare, queues with historical usage will get relatively less resources in over-quota. The significance of the resource usage in this calculation can be controlled with a parameter called "kValue": the bigger it is, the more impact (or weight) the historical usage has on the calculated fairshare, i.e. it will decrease the fairshare of that queue.
+Usually, over quota resources are assigned to each queue proportionally to its Over Quota Weight. With time-based fairshare, queues with historical usage will get relatively less resources in over-quota. The significance of the resource usage in this calculation can be controlled with a parameter called "kValue": the bigger it is, the more impact (or weight) the historical usage has on the calculated fairshare, i.e. it will decrease the fairshare of that queue.
 
 Check out the [time based fairshare simulator](../../../cmd/time-based-fairshare-simulator/README.md) to understand scheduling behavior over time better.
 
@@ -189,6 +189,3 @@ If the scheduler is unable to collect the usage metrics from prometheus, you wil
 ```
 2025-11-10T12:33:07.318Z	ERROR	usagedb/usagedb.go:142	failed to fetch usage data: error querying nvidia.com/gpu and capacity: error querying cluster capacity metric ((sum(kube_node_status_capacity{resource="nvidia_com_gpu"})) * (0.5^((1762777987 - time()) / 600.000000))): bad_data: invalid parameter "query": 1:124: parse error: unexpected character in duration expression: '&'
 ```
-
-Prometheus connectivity
-Metrics availability

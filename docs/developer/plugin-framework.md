@@ -38,7 +38,7 @@ RegisterPluginBuilder("my-plugin", func(args map[string]string) Plugin {
 
 OnSessionOpen is used to initiate state and register to callback functions. OnSessionClose can be used for cleanup or metrics reporting.
 
-### 2. Session Extention Points
+### 2. Session Extension Points
 
 The session object provides the plugins with multiple extension points that the plugins can register callbacks for. For example:
 

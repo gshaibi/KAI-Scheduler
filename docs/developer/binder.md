@@ -6,7 +6,7 @@ description: "The Binder is a controller responsible for handling the pod bindin
 ---
 
 ## Overview
-The Binder is a controller responsible for handling the pod binding process in Kubernetes. The binding process involves actually placing a pod on its selected node, as well as it's dependencies - volumes, resource claims, etc.
+The Binder is a controller responsible for handling the pod binding process in Kubernetes. The binding process involves actually placing a pod on its selected node, as well as its dependencies - volumes, resource claims, etc.
 
 ### Why a Separate Binder?
 
@@ -41,7 +41,7 @@ The BindRequest API serves as a clear contract between the scheduler and binder,
    - Handles any DRA or Persistent Volume allocations
    - Updates the BindRequest status to reflect success or failure
    - Retries failed bindings according to the backoff policy
-4. Until the pod is bound, the scheduler considers the bind request status as the expected scheduling result for this pod and it's dependencies.
+4. Until the pod is bound, the scheduler considers the bind request status as the expected scheduling result for this pod and its dependencies.
 
 ### Error Handling
 

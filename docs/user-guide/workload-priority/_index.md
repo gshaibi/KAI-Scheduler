@@ -26,7 +26,7 @@ Some workloads have a predefined priorities. But, workload can have a custom pri
 
 ## Preemptibility
 KAI Scheduler supports any PriorityClass deployed in the cluster. A PriorityClass with a value of 100 or higher is considered as non-preemptible.
-Non preemptible can only consume in-quota resources of the scheduling queue, and cannot go over quota. 
+Non-preemptible workloads can only consume in-quota resources of the scheduling queue, and cannot go over quota.
 Read about [scheduling queues](../../concepts/queues/_index.md) for more details.
 
 ## Workload Default Priority
@@ -39,23 +39,23 @@ If pods from the same workload have different priorities, the workload's priorit
 ## Usability
 Workload priorities serve three main purposes:
 1. The scheduler attempts to schedule higher priority workloads first.
-2. In case of insufficient cluster resources, lower priority workloads can be evicted to prioritize higher priority queues.
+2. In case of insufficient cluster resources, lower priority workloads can be evicted to prioritize higher priority workloads.
 3. Workloads with `build` or `inference` priorities are not preemptible, hence they can only run within queue quota boundaries.
 
 ## Example
 To limit queue resources, use the following command:
-```
+```bash
 kubectl apply -f example/limited-queue.yaml
 ```
 It will create a `test` queue that has a limit of 1 GPU.
 
 To submit a pod with `train` priority (with a value of 50), use the following command:
-```
+```bash
 kubectl apply -f example/train-priority-pod.yaml
 ```
 
 After `train-pod` is running, submit a pod with `build` priority (with a value of 100), use the following command:
-```
+```bash
 kubectl apply -f example/build-priority-pod.yaml
 ```
 Since both pods request 1 GPU, which is the limit of the `test` queue, only one of the pods will be able to run. 

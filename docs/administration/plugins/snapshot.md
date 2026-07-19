@@ -40,14 +40,14 @@ To capture a snapshot, port-forward to the scheduler pod and call the endpoint:
 ```bash
 kubectl port-forward -n kai-scheduler deployment/kai-scheduler-default 8081 &
 sleep 2
-curl -vv "localhost:8081/get-snapshot" > snapshot.gzip
+curl -s "localhost:8081/get-snapshot" -o snapshot.zip
 ```
 
 ### Analyzing a Snapshot
 
 Use the snapshot tool to analyze a captured snapshot:
 ```bash
-./bin/snapshot-tool-amd64 --filename snapshot.gzip --verbosity 8
+./bin/snapshot-tool-amd64 --filename snapshot.zip --verbosity 8
 ```
 
 See the [Snapshot Tool](#snapshot-tool) section below for more details.
