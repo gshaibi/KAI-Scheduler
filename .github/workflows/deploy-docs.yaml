@@ -42,7 +42,9 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: "20"
+          # Hugo's PostCSS step runs Node with the --permission sandbox, which
+          # older Node rejects ("bad option: --permission"). Needs Node >= 22.
+          node-version: "24"
 
       - name: Setup Go
         uses: actions/setup-go@v5
@@ -64,6 +66,10 @@ jobs:
       # time, so the versions are pinned and reproducible (no `hugo mod get`).
       - name: Build site
         working-directory: website
+        env:
+          # Keep Hugo's module cache inside the workspace so the PostCSS Node
+          # sandbox (--allow-fs-read) can read the Docsy SCSS it compiles.
+          HUGO_CACHEDIR: ${{ github.workspace }}/.hugo_cache
         run: |
           OWNER="$(echo "${GITHUB_REPOSITORY_OWNER}" | tr '[:upper:]' '[:lower:]')"
           REPO="${GITHUB_REPOSITORY#*/}"
