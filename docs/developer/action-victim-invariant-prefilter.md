@@ -1,4 +1,9 @@
-# Action Victim-Invariant Pre-Filter Guard
+---
+title: "Action Victim-Invariant Pre-Filter Guard"
+linkTitle: "Victim-Invariant Pre-Filter"
+weight: 80
+description: "Date: 2026-04-30"
+---
 
 Date: 2026-04-30
 

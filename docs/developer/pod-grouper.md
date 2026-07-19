@@ -1,4 +1,9 @@
-# Pod Grouper
+---
+title: "Pod Grouper"
+linkTitle: "Pod Grouper"
+weight: 50
+description: "The Pod Grouper is a component responsible for automatically creating and managing PodGroup resources based on incoming pods."
+---
 
 ## Overview
 The Pod Grouper is a component responsible for automatically creating and managing PodGroup resources based on incoming pods. It implements a plugin-based architecture to support different grouping strategies for various workload types. The core function of the Pod Grouper is to ensure that pods belonging to the same logical workload are properly grouped together for gang-scheduling purposes.

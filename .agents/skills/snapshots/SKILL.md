@@ -14,7 +14,7 @@ Use this skill when investigating KAI Scheduler behavior with captured cluster s
 
 ## Facts
 
-- `docs/plugins/snapshot.md` is the source of truth for capture.
+- `docs/administration/plugins/snapshot.md` is the source of truth for capture.
 - The snapshot endpoint is `/get-snapshot` on plugin port `8081`, not the scheduler `--listen-address` port. In the observed clusters here, remote `8080` returned `404` while remote `8081` worked.
 - Snapshot files are ZIP archives containing `snapshot.json`, even when named `.gzip`.
 - `cmd/snapshot-tool/main.go` rebuilds fake clients from `snapshot.json` and replays the configured scheduler actions.

@@ -1,4 +1,9 @@
-# Binder
+---
+title: "Binder"
+linkTitle: "Binder"
+weight: 40
+description: "The Binder is a controller responsible for handling the pod binding process in Kubernetes."
+---
 
 ## Overview
 The Binder is a controller responsible for handling the pod binding process in Kubernetes. The binding process involves actually placing a pod on its selected node, as well as it's dependencies - volumes, resource claims, etc.
@@ -234,7 +239,7 @@ The HAMI-core plugin is disabled by default and **requires `gpusharing` to be en
 
 Fractional pods created while `hamicore` is disabled do not receive this environment variable. Enabling `hamicore` affects only pods admitted after the change.
 
-Setting `CUDA_DEVICE_MEMORY_LIMIT` does not by itself enforce memory inside the container. For enforcement, deploy [KAI-resource-isolator](https://github.com/Project-HAMi/KAI-resource-isolator) alongside KAI Scheduler so HAMi-core can apply the limit at runtime. See [GPU Sharing — Enforcing GPU memory limits](../gpu-sharing/README.md#enforcing-gpu-memory-limits-optional).
+Setting `CUDA_DEVICE_MEMORY_LIMIT` does not by itself enforce memory inside the container. For enforcement, deploy [KAI-resource-isolator](https://github.com/Project-HAMi/KAI-resource-isolator) alongside KAI Scheduler so HAMi-core can apply the limit at runtime. See [GPU Sharing — Enforcing GPU memory limits](../user-guide/gpu-sharing/_index.md#enforcing-gpu-memory-limits-optional).
 
 ### Creating Custom Plugins
 

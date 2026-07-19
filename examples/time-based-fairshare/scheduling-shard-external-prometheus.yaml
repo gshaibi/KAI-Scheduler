@@ -25,7 +25,7 @@
 #   kubectl apply -f scheduling-shard-external-prometheus.yaml
 #
 # Step 3: Ensure ServiceMonitors are configured
-#   See docs/metrics/service-monitors.yaml for required ServiceMonitor configurations
+#   See docs/administration/metrics/service-monitors.yaml for required ServiceMonitor configurations
 
 apiVersion: kai.scheduler/v1
 kind: SchedulingShard

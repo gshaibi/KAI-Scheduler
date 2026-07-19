@@ -1,4 +1,9 @@
-# Scheduler Plugin Mechanism
+---
+title: "Scheduler Plugin Mechanism"
+linkTitle: "Plugin Framework"
+weight: 30
+description: "The scheduler uses a plugin-based architecture that allows extending its functionality through various extension points."
+---
 
 ## Overview
 The scheduler uses a plugin-based architecture that allows extending its functionality through various extension points. The core mechanism is built around `Session` object that maintains the scheduling context and plugin-registered callbacks.

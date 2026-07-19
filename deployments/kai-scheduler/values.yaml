@@ -247,7 +247,7 @@ crdupgrader:
 kaiConfig:
   # Render the kai-config Config CR inline as a regular chart resource so it is
   # tracked, drift-detected and self-healed by GitOps tools such as ArgoCD.
-  # Mutually exclusive with kaiConfigDeployer.enabled. See docs/gitops/README.md.
+  # Mutually exclusive with kaiConfigDeployer.enabled. See docs/administration/gitops/_index.md.
   render: false
 
 kaiConfigDeployer:
@@ -255,7 +255,7 @@ kaiConfigDeployer:
   # Disable to manage the kai-config CR outside of this chart. When disabled, the chart
   # neither creates kai-config nor deletes it during post-delete cleanup.
   # For GitOps/ArgoCD installs disable this and set kaiConfig.render=true instead
-  # (see docs/gitops/README.md).
+  # (see docs/administration/gitops/_index.md).
   enabled: true
   image:
     name: crd-upgrader

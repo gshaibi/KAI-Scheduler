@@ -1,4 +1,9 @@
-# Scheduler Core Concepts
+---
+title: "Scheduler Core Concepts"
+linkTitle: "Scheduler Concepts"
+weight: 10
+description: "KAI Scheduler is built around key concepts that work together to make scheduling decisions."
+---
 
 - [Scheduler Core Concepts](#scheduler-core-concepts)
   - [Overview](#overview)
@@ -68,7 +73,7 @@ A **Snapshot** captures the cluster state at the start of each scheduling cycle.
 
 Snapshots capture all the cluster resources and state information needed for scheduling decisions, including pods, nodes, queues, pod groups, bind requests, and other relevant Kubernetes objects.
 
-For detailed information about snapshots and the snapshot plugin, see [Snapshot Plugin](../plugins/snapshot.md).
+For detailed information about snapshots and the snapshot plugin, see [Snapshot Plugin](../administration/plugins/snapshot.md).
 
 ### Why Snapshots Matter
 
@@ -88,7 +93,7 @@ For detailed information about PodGroup creation and gang scheduling, see [Pod G
 
 The scheduler implements a **hierarchical queue system** for resource management and fair sharing. **Queues** represent logical resource containers with quotas, priorities, and limits.
 
-For detailed information, see [Scheduling Queues](../queues/README.md) and [Fairness](../fairness/README.md).
+For detailed information, see [Scheduling Queues](../concepts/queues/_index.md) and [Fairness](../concepts/fairness/_index.md).
 
 ## Sessions
 
@@ -141,7 +146,7 @@ For detailed information about the binding process and BindRequest lifecycle, se
 - [Plugin Framework](plugin-framework.md) - Plugin development guide
 - [Binder](binder.md) - Pod binding process
 - [Pod Grouper](pod-grouper.md) - Gang scheduling implementation
-- [Snapshot Plugin](../plugins/snapshot.md) - Snapshot capture and analysis tools
-- [Scheduling Queues](../queues/README.md) - Queue configuration and management
-- [Fairness](../fairness/README.md) - Resource fairness and distribution algorithms
-- [Scheduling Deep Dive](../scheduling-deep-dive/README.md) - Visual guide to how scheduling concepts interact
+- [Snapshot Plugin](../administration/plugins/snapshot.md) - Snapshot capture and analysis tools
+- [Scheduling Queues](../concepts/queues/_index.md) - Queue configuration and management
+- [Fairness](../concepts/fairness/_index.md) - Resource fairness and distribution algorithms
+- [Scheduling Deep Dive](../concepts/scheduling-deep-dive/_index.md) - Visual guide to how scheduling concepts interact

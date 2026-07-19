@@ -6,7 +6,7 @@ A standalone tool for running time-based fairshare simulations for the KAI Sched
 
 For more information about time-based fairshare and the underlying concepts:
 - [Time-Based Fairshare Design Document](../../docs/developer/designs/time-based-fairshare/time-based-fairshare.md) - Detailed design and mathematical formulation
-- [Fairness Documentation](../../docs/fairness/README.md) - Overview of KAI's fair-share scheduling concepts
+- [Fairness Documentation](../../docs/concepts/fairness/_index.md) - Overview of KAI's fair-share scheduling concepts
 
 ## Quick Start
 
