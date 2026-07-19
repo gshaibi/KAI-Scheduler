@@ -110,7 +110,9 @@ Refer to the [Breaking Changes](https://github.com/kai-scheduler/KAI-scheduler/b
 
 ## Documentation
 
-Full documentation is organized under [`docs/`](docs/_index.md): [Getting Started](docs/getting-started/_index.md), [Concepts](docs/concepts/_index.md), [User Guide](docs/user-guide/_index.md), [Administration](docs/administration/_index.md), and the [Developer Guide](docs/developer/_index.md).
+Browse the documentation website at **https://gshaibi.github.io/KAI-Scheduler/** (built from [`docs/`](docs/_index.md) with Hugo + Docsy; see [`website/`](website/README.md)).
+
+The docs are organized under [`docs/`](docs/_index.md): [Getting Started](docs/getting-started/_index.md), [Concepts](docs/concepts/_index.md), [User Guide](docs/user-guide/_index.md), [Administration](docs/administration/_index.md), and the [Developer Guide](docs/developer/_index.md).
 
 ## Quick Start
 
