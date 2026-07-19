@@ -10,7 +10,7 @@ description: "The --queue-label-key CLI flag was removed from the queue-controll
 ### Queue Controller: `--queue-label-key` flag removed
 
 The `--queue-label-key` CLI flag was removed from the queue-controller binary in v0.13.0
-([#1049](https://github.com/NVIDIA/KAI-Scheduler/pull/1049)). The queue-controller now uses a
+([#1049](https://github.com/kai-scheduler/KAI-scheduler/pull/1049)). The queue-controller now uses a
 field indexer on `Spec.Queue` instead of relying on a pod label key for resource aggregation.
 
 The operator's args builder was updated in the same commit, so the flag is no longer passed to the
@@ -89,7 +89,7 @@ re-creates resources concurrently with the rollback, causing further race condit
 helm uninstall kai-scheduler -n kai-scheduler
 
 # 2. Reinstall the target version
-helm install kai-scheduler oci://ghcr.io/nvidia/kai-scheduler/kai-scheduler \
+helm install kai-scheduler oci://ghcr.io/kai-scheduler/kai-scheduler/kai-scheduler \
   --version v0.12.1 -n kai-scheduler
 ```
 All queues, workloads, CRDs, and PodGroups are preserved across this cycle.
@@ -116,7 +116,7 @@ All KAI controller pods are removed. No new scheduling occurs until KAI is reins
 
 3. **Run the upgrade:**
    ```bash
-   helm upgrade kai-scheduler oci://ghcr.io/nvidia/kai-scheduler/kai-scheduler \
+   helm upgrade kai-scheduler oci://ghcr.io/kai-scheduler/kai-scheduler/kai-scheduler \
      --version v0.13.0 -n kai-scheduler --reuse-values
    ```
 
@@ -132,7 +132,7 @@ All KAI controller pods are removed. No new scheduling occurs until KAI is reins
    kubectl get queues
    ```
 
-5. **Do not use `helm rollback`.** See [Known Issues](#helm-rollback-from-v013x-to-v012x-fails).
+5. **Do not use `helm rollback`.** See [Known Issues](#helm-rollback-from-v0130-to-v012x-fails).
    If you need to revert to v0.12.x, use the downgrade procedure below.
 
 ## 4. Downgrade Procedure (v0.13.0 → v0.12.x)
@@ -156,7 +156,7 @@ preserves all queues, workloads, CRDs, and PodGroups.
 
 2. **Reinstall v0.12.x:**
    ```bash
-   helm install kai-scheduler oci://ghcr.io/nvidia/kai-scheduler/kai-scheduler \
+   helm install kai-scheduler oci://ghcr.io/kai-scheduler/kai-scheduler/kai-scheduler \
      --version v0.12.1 -n kai-scheduler
    ```
    The `kai-scheduler` namespace already exists so `--create-namespace` is not needed.

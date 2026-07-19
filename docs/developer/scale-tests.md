@@ -167,11 +167,7 @@ Empty-string metadata fields and the metadata `timestamp` are omitted. When
 manifest already identifies the tested commit. Metadata fields use their
 original names in test-point tooltips without a `metadata.` prefix.
 
-Legacy Ginkgo reports remain readable until **2026-07-30**. Their metrics and
-the canonical scale results are shown on the same graphs, with a vertical line
-marking the first canonical result. After the cutoff, remove the legacy parser
-and renderer, legacy test-name aliases and fixture tests, the compatibility
-cutoff constant, and references to `report.json` together.
+Legacy Ginkgo reports are shown on the same graphs alongside canonical scale results, with a vertical line marking the first canonical result. Once legacy support is removed, the legacy parser and renderer, legacy test-name aliases and fixture tests, the compatibility cutoff constant, and references to `report.json` can be cleaned up together.
 
 ### Dashboard Deployment
 

@@ -2,7 +2,7 @@
 title: "Quick Start Setup"
 linkTitle: "Quick Start"
 weight: 20
-description: "A queue is an object which represents a job queue in the cluster."
+description: "Create queues and submit your first CPU and GPU workloads with KAI Scheduler."
 ---
 
 ## Scheduling queues
@@ -24,7 +24,7 @@ To customize scheduling, you can create additional queues or modify existing one
 ### Creating Additional Queues
 
 To add custom queues, apply your queue configuration:
-```
+```bash
 kubectl apply -f queues.yaml
 ```
 For detailed configuration options, refer to the [Scheduling Queues](../../concepts/queues/_index.md) documentation.
@@ -43,7 +43,7 @@ When submitting workloads, make sure to use a dedicated namespace. Do not use th
 ### Submitting Example Pods
 #### CPU-Only Pods
 To submit a very simple pod that requests CPU and memory resources, use the following command:
-```
+```bash
 kubectl apply -f pods/cpu-only-pod.yaml
 ```
 
@@ -51,6 +51,6 @@ kubectl apply -f pods/cpu-only-pod.yaml
 Before you run the below, make sure the [NVIDIA GPU-Operator](https://github.com/NVIDIA/gpu-operator) is installed in the cluster.
 
 To submit a pod that requests a GPU resource, use the following command:
-```
+```bash
 kubectl apply -f pods/gpu-pod.yaml
 ```

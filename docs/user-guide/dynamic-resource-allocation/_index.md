@@ -17,17 +17,17 @@ KAI Scheduler supports DRA through its [Binder controller](https://github.com/ka
 - The [NVIDIA k8s-dra-driver-gpu](https://github.com/NVIDIA/k8s-dra-driver-gpu) must be installed by following [instructions from here](https://github.com/NVIDIA/k8s-dra-driver-gpu/discussions/249). This driver leverages the upstream DRA API to support NVIDIA Multi-Node NVLink available in GB200 GPUs via a ComputeDomain CRD that lets you define resource templates which you can reference in your workloads.
 
 - DRA is disabled by default. To enable it, add the following flag to the helm install command:
-```
- --set scheduler.additionalArgs[0]=--feature-gates=DynamicResourceAllocation=true --set binder.additionalArgs[0]=--feature-gates=DynamicResourceAllocation=true
+```bash
+--set scheduler.additionalArgs[0]=--feature-gates=DynamicResourceAllocation=true --set binder.additionalArgs[0]=--feature-gates=DynamicResourceAllocation=true
 ```
 
 ### DRA IMEX POD
 To submit a pod that requests an IMEX channel, run this command:
-```
+```bash
 kubectl apply -f gpu-imex-pod.yaml
 ```
 
-The scheuler will autogenerate this BindRequest for the requested IMEX channel
+The scheduler will autogenerate this BindRequest for the requested IMEX channel
 
 ```bash
 kubectl get BindRequest gpu-imex-pod-8g6vlrjxpp -o yaml

@@ -29,8 +29,8 @@ For an overview of how actions fit into the broader scheduler architecture, see 
    - Strives for fair allocation of resources in the cluster (according to the plugins restrictions)
 
 4. **Preempt**
-   - Prioritize jobs in-queues
-   - Evicts lower-priority jobs in-queue in favor of higher-priority jobs (according to plugin restrictions)
+   - Prioritizes jobs within queues
+   - Evicts lower-priority jobs within the same queue in favor of higher-priority jobs (according to plugin restrictions)
 
 5. **StaleGangEviction**
    - Evicts jobs which violate their minMember gang requirements
@@ -86,12 +86,12 @@ Scenarios allow the scheduler to:
 
 ### 2. Simulation
 
-Simulations are used to check potential scheduling decisions. For example, before evicting some victim jobs to allow another job to be scheduled, we want to make sure that the allocation will succeed according to all scheduling considerations (for example - avaliable resources, pod/node affinity, availability of volumes/dynamic resources on the node, queue fair share, queue limits etc).  
+Simulations are used to check potential scheduling decisions. For example, before evicting some victim jobs to allow another job to be scheduled, we want to make sure that the allocation will succeed according to all scheduling considerations (for example - available resources, pod/node affinity, availability of volumes/dynamic resources on the node, queue fair share, queue limits etc).  
 The scheduler can perform virtual scheduling decisions in-memory, such as allocation or eviction of pods, and check the result. Plugins can register callbacks to these operations, to track virtual changes in the cluster's state. If a set of allocation is considered undesirable by the scheduler, it can be rolled back partially or completely.
 
 ### 3. Statement
 
-The Statement object represents a transaction-like grouping of scheduling operations that can be committed or rolled back as a unit. Statement is used to simulate scheduling scenarios, without commiting them to the cluster.
+The Statement object represents a transaction-like grouping of scheduling operations that can be committed or rolled back as a unit. Statement is used to simulate scheduling scenarios, without committing them to the cluster.
 
 **Key capabilities:**
 - **Checkpoint/Rollback**: Create points to roll back to if operations fail
@@ -109,4 +109,4 @@ stmt.Commit()              // Apply all changes to the cluster
 stmt.Discard()             // Discard all changes
 ```
 
-This documentation covers the main concepts of the scheduler's action framework. For more detailed information about specific implementations or advanced features, please refer to the codebase and tests. Requests and suggestions are welcome.
+This documentation covers the main concepts of the scheduler's action framework. For more detailed information about specific implementations or advanced features, refer to the codebase and tests.

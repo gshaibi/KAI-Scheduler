@@ -106,7 +106,7 @@ Deployments are a special case:
 
 ### MPI Job Grouping
 For MPI workloads:
-- Infer gang scheduling requirements from  schedulingPolicy.minAvailable, otherwise use all the replicas
+- Infer gang scheduling requirements from `schedulingPolicy.minAvailable`, otherwise use all the replicas
 - Use "Train" priority class by default
 
 ### JobSet Grouping
@@ -116,7 +116,7 @@ For JobSet workloads, a single PodGroup is created per JobSet with a two-level S
 - Root `minSubGroup`:
   - `1` when `spec.startupPolicy.startupPolicyOrder` is `InOrder` (the JobSet controller creates one replicatedJob at a time; the scheduler must not block waiting on pods that don't exist yet).
   - `len(spec.replicatedJobs)` otherwise.
-  - The user has the option to overridable via the `kai.scheduler/batch-min-member` annotation on the JobSet; 
+  - The user can override this via the `kai.scheduler/batch-min-member` annotation on the JobSet;
 - Per-replicatedJob parent SubGroup name: `<replicatedJob-name>`, with `minSubGroup = replicas`.
 - Per-replica leaf SubGroup name: `<replicatedJob-name>-replica-<job-index>`, with `minMember` defaulting to `template.spec.parallelism`. Override per replicatedJob by setting `kai.scheduler/batch-min-member` on `replicatedJobs[].template.metadata.annotations`; values exceeding `parallelism` are accepted and logged.
 - Topology constraints are read from two scopes:
@@ -151,9 +151,9 @@ The PodGroup CRD includes detailed explanations when jobs cannot be scheduled, i
 - Preemptible vs. non-preemptible resource information
 
 This structured information helps users and automation systems understand and respond to scheduling failures.
- ## Example Plugin
+## Example Plugin
 
-``` Go
+```go
 // CustomJobPodGroupPlugin implements grouping logic for custom job resources
 
 type CustomJobPodGrouper struct {
@@ -209,7 +209,7 @@ func (cjg *CustomJobPodGrouper) CustomJobPodGroupMetadata(
 ```
 
 To register your plugin, edit `pkg/podgrouper/podgrouper/hub/hub.go` and add the following entry to the supportedTypes slice:
-``` Go 
+```go
 defaultGrouper := defaultgrouper.NewDefaultGrouper(queueLabelKey)
 table := supportedTypes{
     {

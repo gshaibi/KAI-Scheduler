@@ -8,12 +8,12 @@ description: "KAI Scheduler supports GPU sharing, allowing multiple pods to util
 KAI Scheduler supports GPU sharing, allowing multiple pods to utilize the same GPU device efficiently by allocating a GPU device to multiple pods.
 
 There are several ways for users to request a portion of GPU for their pods:
-* Pod can request a specific GPU memory amount (e.g. 2000Mib), leaving the remaining GPU memory for other pods.
+* Pod can request a specific GPU memory amount (e.g., 2000 MiB), leaving the remaining GPU memory for other pods.
 * Or, it can request a portion of a GPU device memory (e.g. 0.5) that the pod intends to consume from the mounted GPU device.
 
-By default, KAI Scheduler does not enforce memory allocation limits or perform memory isolation between processes. Please use [hami](./hami/_index.md) to enforce memory isolation.
+By default, KAI Scheduler does not enforce memory allocation limits or perform memory isolation between processes. Please use [HAMi](./hami/_index.md) to enforce memory isolation.
 
-Without mps or hami, pods sharing the same GPU may consume more memory than requested, which can impact other workloads on that device.
+Without MPS or HAMi, pods sharing the same GPU may consume more memory than requested, which can impact other workloads on that device.
 
 In addition, note that pods sharing a single GPU device can reside in different namespaces.
 
@@ -33,7 +33,7 @@ To specify a custom Runtime Class, use the `--set "binder.resourceReservation.ru
 
 ### GPU Sharing Pod
 To submit a pod that can share a GPU device, run this command:
-```
+```bash
 kubectl apply -f gpu-sharing.yaml
 ```
 
@@ -44,11 +44,11 @@ In the gpu-sharing.yaml file, the pod includes a `gpu-fraction` annotation with 
 
 ### GPU Memory Pod
 To submit a pod that request a specific amount of GPU memory, run this command:
-```
+```bash
 kubectl apply -f gpu-memory.yaml
 ```
 In the gpu-memory.yaml file, the pod includes a `gpu-memory` annotation with a value of 2000 (in Mib), meaning:
-* The pod is allowed to consume up to 2000 Mib of a GPU device memory
+* The pod is allowed to consume up to 2000 MiB of a GPU device memory
 * The remaining GPU device memory can be shared with other pods in the cluster
 
 ### GPU Fraction with Non-Default Container
@@ -56,7 +56,7 @@ By default, GPU fraction allocation is applied to the first container (index 0) 
 
 #### Specific Container
 To allocate GPU fraction to a specific container in a multi-container pod:
-```
+```bash
 kubectl apply -f gpu-sharing-non-default-container.yaml
 ```
 

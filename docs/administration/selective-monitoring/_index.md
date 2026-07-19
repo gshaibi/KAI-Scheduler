@@ -15,7 +15,7 @@ KAI Scheduler supports two mechanisms for scoping the set of monitored pods.
 The first option is PodLabelSelector, which restricts monitoring to pods that carry specific labels. This allows admins to define one or more key-value pairs, and only pods matching all specified labels will be processed by KAI. 
 This approach is particularly useful for targeting well-defined workloads. To configure the PodLabelSelector, pass the desired label set as Helm parameters during installation.
 For example:
-```
+```bash
 --set "global.podLabelSelector.labelName=labelValue"
 ```
 This ensures that only pods with the label labelName=labelValue will be monitored by the scheduler. Multiple labels can be set using additional `--set` flags.
@@ -25,9 +25,9 @@ The second scoping mechanism is NamespaceLabelSelector, which functions similarl
 With this approach, KAI Scheduler will monitor only those pods that reside in namespaces matching all specified label key-value pairs.
 Pods in namespaces that do not match the configured label set will be excluded from KAI’s monitoring scope.
 This is particularly effective for managing workloads grouped by environment, team, or tenant at the namespace level.
-To configure this filter, pass the relevant labels as Helm parameters during installation. 
+To configure this filter, pass the relevant labels as Helm parameters during installation.
 For example:
-```
+```bash
 --set "global.namespaceLabelSelector.namespaceLabelName=namespaceLabelValue"
 ```
 Multiple labels can be specified using additional `--set` flags.
@@ -37,8 +37,8 @@ KAI Scheduler also supports combining both PodLabelSelector and NamespaceLabelSe
 Specifically, a pod must have labels that match all key-value pairs defined in PodLabelSelector, and reside in a namespace whose labels match all key-value pairs defined in NamespaceLabelSelector.
 This combined filtering mechanism ensures precise targeting of workloads, allowing admins to apply scheduling logic only to pods that meet both workload-specific and environment-level criteria. Configuration is done by passing both selector sets during Helm installation:
 
-```
---set "global.podLabelSelector.app=batch"
+```bash
+--set "global.podLabelSelector.app=batch" \
 --set "global.namespaceLabelSelector.team=ml"
 ```
 In the above example, only pods labeled `app=batch` and running in namespaces labeled `team=ml` will be included in KAI Scheduler's monitoring scope.

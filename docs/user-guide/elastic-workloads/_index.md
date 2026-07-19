@@ -14,14 +14,14 @@ KAI Scheduler intelligently manages pod roles—prioritizing eviction of non-lea
 
 For example, a PodGroup with four replica SubGroups can set `minSubGroup: 3` so the workload starts once any three replicas satisfy their own `minMember` thresholds. The fourth replica remains elastic and can be scheduled later when resources are available.
 
-#### Prerequisites
+### Prerequisites
 This requires the [training-operator](https://github.com/kubeflow/trainer) to be installed in the cluster.
 
-### Elastic Pytorch
-To submit an elastic pytorch job, run this command:
-```
+### Elastic PyTorch
+To submit an elastic PyTorch job, run this command:
+```bash
 kubectl apply -f pytorch-elastic.yaml
 ```
-It will create a PytorchJob with a minimum of 1 worker, and will be able to start running as soon as there are enough resource in the cluster for the one pod.
+It will create a PyTorchJob with a minimum of 1 worker, and will be able to start running as soon as there are enough resources in the cluster for the one pod.
 And, if additional resources are available, the workload will be able to add 2 additional workers.
-If resources are requested by more prioritized workload, KAI Scheduler will be able to evict only part of its pods and the workload will continue running.
+If resources are requested by a more prioritized workload, KAI Scheduler will be able to evict only part of its pods and the workload will continue running.

@@ -1,5 +1,5 @@
 ---
-title: "Kube-Prometheus-Stack"
+title: "Metrics & Monitoring"
 linkTitle: "Metrics & Monitoring"
 weight: 20
 description: "Install Prometheus Operator and enable a Prometheus instance."
@@ -8,13 +8,13 @@ description: "Install Prometheus Operator and enable a Prometheus instance."
 Install Prometheus Operator and enable a Prometheus instance. Enable Grafana if
 you want to import the dashboards from this directory:
 
-```
+```bash
 helm repo add prometheus-community https://prometheus-community.github.io/helm-charts
 helm repo update prometheus-community
 helm upgrade -i --create-namespace -n monitoring kube-prometheus-stack prometheus-community/kube-prometheus-stack --values kube-prometheus-values.yaml
 ```
 
-# Service Monitors for KAI services
+## Service Monitors for KAI services
 
 Install a Prometheus instance and the relevant ServiceMonitors in the
 `kai-scheduler` namespace:
@@ -31,7 +31,7 @@ To enable the Prometheus instance as a Grafana datasource, apply
 kubectl apply -f grafana-datasource.yaml
 ```
 
-# Grafana dashboards
+## Grafana dashboards
 
 The `grafana/` directory contains importable dashboards for scale-test deep
 dives:

@@ -5,8 +5,6 @@ weight: 30
 description: "High availability ensures services continue operating even if some instances fail, preventing downtime and improving fault tolerance."
 ---
 
-High availability ensures services continue operating even if some instances fail, preventing downtime and improving fault tolerance.
-
 ## Leader Election in Kubernetes
 
 In a distributed system with multiple replicas, some operations must be performed by only one instance at a time. Kubernetes uses leader election to automatically choose one pod as the leader while others stay in standby mode.
@@ -17,7 +15,7 @@ KAI services integrate Kubernetes leader election to allow multiple replicas to 
 
 Leader election for KAI services is disabled by default. Enable it during installation using:
 
-```
+```bash
 --set "global.leaderElection=true"
 ```
 
@@ -25,14 +23,14 @@ Leader election for KAI services is disabled by default. Enable it during instal
 
 After enabling leader election, scale all KAI service replicas in the `kai-scheduler` namespace with:
 
-```
+```bash
 kubectl scale deployment --all --replicas=2 -n kai-scheduler
 ```
 
-## Pod Anti Affinity
+## Pod Anti-Affinity
 
 In order to spread replicas of each individual service across cluster nodes, set the following value:
-```
+```bash
 --set global.requireDefaultPodAntiAffinityTerm=true
 ```
 This will add a required podAntiAffinityTerm to all deployments, requiring the scheduler to not place multiple pods of the same service on the same node.

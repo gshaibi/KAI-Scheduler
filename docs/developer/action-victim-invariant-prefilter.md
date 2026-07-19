@@ -2,7 +2,7 @@
 title: "Action Victim-Invariant Pre-Filter Guard"
 linkTitle: "Victim-Invariant Pre-Filter"
 weight: 80
-description: "Date: 2026-04-30"
+description: "Design document for the victim-invariant pre-filter guard that skips expensive solver work when a pending job has an unresolvable pre-solver failure."
 ---
 
 Date: 2026-04-30
