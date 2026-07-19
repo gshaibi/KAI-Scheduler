@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Plugins on KAI Scheduler</title><link>https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/</link><description>Recent content in Plugins on KAI Scheduler</description><generator>Hugo</generator><language>en</language><atom:link href="https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/index.xml" rel="self" type="application/rss+xml"/><item><title>MinRuntime Plugin</title><link>https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/minruntime/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/minruntime/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The MinRuntime plugin for KAI-Scheduler provides runtime protection for jobs by preventing preemption or resource reclamation of jobs until they have run for a specified minimum time duration. This ensures workloads can complete critical initialization or checkpointing before being interrupted.&lt;/p&gt;
+&lt;h2 id="key-features"&gt;Key Features&lt;/h2&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;Preemption Protection&lt;/strong&gt;: Prevents jobs from being preempted until they have run for a specified minimum duration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Reclamation Protection&lt;/strong&gt;: Prevents elastic jobs from having resources reclaimed until they have run for a specified minimum duration&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Queue-based Configuration&lt;/strong&gt;: Configure different minimum runtime durations for different queues in your scheduling hierarchy&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Hierarchical Inheritance&lt;/strong&gt;: Minimum runtime settings cascade down from parent queues to leaf queues&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Flexible Resolution Methods&lt;/strong&gt;: Two methods for reclaim minimum runtime resolution:
+&lt;ul&gt;
+&lt;li&gt;Queue-based: Evaluates the min-runtime protection based on the victim&amp;rsquo;s queue configuration&lt;/li&gt;
+&lt;li&gt;LCA (Lowest Common Ancestor): Uses the common ancestor of reclaimer and victim queues to determine min-runtime protection&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="usage"&gt;Usage&lt;/h2&gt;
+&lt;p&gt;The minruntime plugin is configured in two ways:&lt;/p&gt;</description></item><item><title>Reflect Job Order Plugin</title><link>https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/reflectjoborder/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/reflectjoborder/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The &lt;code&gt;reflectjoborder&lt;/code&gt; plugin exposes the order in which the scheduler intends to process pending PodGroups (jobs) during the next scheduling cycle. It is the supported way to answer the question &lt;em&gt;&amp;ldquo;where does my workload sit in its queue right now?&amp;rdquo;&lt;/em&gt;.&lt;/p&gt;
+&lt;p&gt;The plugin is read-only: it observes the same ordering used by the &lt;code&gt;Allocate&lt;/code&gt; action and serves it over an HTTP endpoint on the scheduler pod. Each scheduling cycle refreshes the data.&lt;/p&gt;</description></item><item><title>KAI Scheduler Snapshot Plugin and Tool</title><link>https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/snapshot/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://gshaibi.github.io/KAI-Scheduler/docs/administration/plugins/snapshot/</guid><description>&lt;h2 id="overview"&gt;Overview&lt;/h2&gt;
+&lt;p&gt;The KAI Scheduler provides a snapshot plugin and tool that allows capturing and analyzing the state of the scheduler and cluster resources. This documentation covers both the snapshot plugin and the snapshot tool.&lt;/p&gt;
+&lt;h2 id="snapshot-plugin"&gt;Snapshot Plugin&lt;/h2&gt;
+&lt;p&gt;The snapshot plugin is a framework plugin that provides an HTTP endpoint to capture the current state of the scheduler and cluster resources.&lt;/p&gt;
+&lt;h3 id="features"&gt;Features&lt;/h3&gt;
+&lt;ul&gt;
+&lt;li&gt;Captures scheduler configuration and parameters&lt;/li&gt;
+&lt;li&gt;Collects raw Kubernetes objects that the scheduler uses to perform its actions including:
+&lt;ul&gt;
+&lt;li&gt;Pods&lt;/li&gt;
+&lt;li&gt;Nodes&lt;/li&gt;
+&lt;li&gt;Queues&lt;/li&gt;
+&lt;li&gt;PodGroups&lt;/li&gt;
+&lt;li&gt;BindRequests&lt;/li&gt;
+&lt;li&gt;PriorityClasses&lt;/li&gt;
+&lt;li&gt;ConfigMaps&lt;/li&gt;
+&lt;li&gt;PersistentVolumeClaims&lt;/li&gt;
+&lt;li&gt;CSIStorageCapacities&lt;/li&gt;
+&lt;li&gt;StorageClasses&lt;/li&gt;
+&lt;li&gt;CSIDrivers&lt;/li&gt;
+&lt;li&gt;ResourceClaims&lt;/li&gt;
+&lt;li&gt;ResourceSlices&lt;/li&gt;
+&lt;li&gt;DeviceClasses&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="capturing-a-snapshot"&gt;Capturing a Snapshot&lt;/h3&gt;
+&lt;p&gt;The plugin registers an HTTP endpoint &lt;code&gt;/get-snapshot&lt;/code&gt; that returns a ZIP file containing a JSON snapshot of the cluster state.&lt;/p&gt;</description></item></channel></rss>

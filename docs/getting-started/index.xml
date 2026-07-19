@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Getting Started on KAI Scheduler</title><link>https://gshaibi.github.io/KAI-Scheduler/docs/getting-started/</link><description>Recent content in Getting Started on KAI Scheduler</description><generator>Hugo</generator><language>en</language><atom:link href="https://gshaibi.github.io/KAI-Scheduler/docs/getting-started/index.xml" rel="self" type="application/rss+xml"/><item><title>Installation</title><link>https://gshaibi.github.io/KAI-Scheduler/docs/getting-started/installation/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://gshaibi.github.io/KAI-Scheduler/docs/getting-started/installation/</guid><description>&lt;p&gt;KAI Scheduler is installed into the &lt;code&gt;kai-scheduler&lt;/code&gt; namespace.&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;⚠️ When submitting workloads, use a dedicated namespace. Do not use the &lt;code&gt;kai-scheduler&lt;/code&gt; namespace for workload submission.&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id="prerequisites"&gt;Prerequisites&lt;/h2&gt;
+&lt;p&gt;Before installing KAI Scheduler, ensure you have:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;A running Kubernetes cluster&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://helm.sh/docs/intro/install" rel="noopener"&gt;Helm&lt;/a&gt;
+ CLI installed&lt;/li&gt;
+&lt;li&gt;&lt;a href="https://github.com/NVIDIA/gpu-operator" rel="noopener"&gt;NVIDIA GPU-Operator&lt;/a&gt;
+ installed, in order to schedule workloads that request GPU resources&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id="installation-methods"&gt;Installation methods&lt;/h2&gt;
+&lt;p&gt;KAI Scheduler can be installed:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;From production (recommended)&lt;/strong&gt; — a published release from the container registry.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;From source&lt;/strong&gt; — see &lt;a href="https://gshaibi.github.io/KAI-Scheduler/docs/developer/building-from-source/"&gt;Building from Source&lt;/a&gt;
+.&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;With ArgoCD (GitOps)&lt;/strong&gt; — see the &lt;a href="https://gshaibi.github.io/KAI-Scheduler/docs/administration/gitops/"&gt;GitOps installation guide&lt;/a&gt;
+.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id="install-from-production"&gt;Install from production&lt;/h3&gt;
+&lt;p&gt;Locate the latest release version on the &lt;a href="https://github.com/kai-scheduler/KAI-scheduler/releases" rel="noopener"&gt;releases&lt;/a&gt;
+ page.
+Run the following command after replacing &lt;code&gt;&amp;lt;VERSION&amp;gt;&lt;/code&gt; with the desired release version:&lt;/p&gt;</description></item></channel></rss>
