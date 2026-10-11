@@ -64,10 +64,8 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      # Restore-only: main (push-artifacts) saves Go caches. PR and merge-queue saves are unreachable
-      # from other refs and evict main's entries from the repo cache quota.
-      - name: Restore Go build cache (Docker-mounted)
-        uses: actions/cache/restore@v6
+      - name: Cache Go build cache (Docker-mounted)
+        uses: actions/cache@v6
         with:
           path: |
             ~/.cache/go-build-docker-gocache
@@ -80,12 +78,7 @@ jobs:
         uses: actions/setup-go@v7
         with:
           go-version: '1.26.8'
-          cache: false
-
-      - name: Share restored Go caches with host Go
-        run: |
-          echo "GOMODCACHE=$HOME/.cache/go-build-docker-gopath/pkg/mod" >> "$GITHUB_ENV"
-          echo "GOCACHE=$HOME/.cache/go-build-docker-gocache" >> "$GITHUB_ENV"
+          cache: true
 
       - name: Run validation
         run: make validate
@@ -197,8 +190,8 @@ jobs:
           echo "PACKAGE_VERSION=$PACKAGE_VERSION" >> $GITHUB_OUTPUT
           echo $PACKAGE_VERSION
 
-      - name: Restore Go build cache (Docker-mounted)
-        uses: actions/cache/restore@v6
+      - name: Cache Go build cache (Docker-mounted)
+        uses: actions/cache@v6
         with:
           path: |
             ~/.cache/go-build-docker-gocache
@@ -237,8 +230,8 @@ jobs:
 
       - name: Build docker images
         run: |
-          make build DOCKER_BUILDX_ADDITIONAL_ARGS=--load VERSION=$PACKAGE_VERSION
-          docker save $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $PACKAGE_VERSION) -o /mnt/images/docker_images.tar
+          make build DOCKER_BUILDX_ADDITIONAL_ARGS="--load --cache-from type=gha --cache-to type=gha,mode=max" VERSION=$PACKAGE_VERSION
+          docker save $(docker images --format '{{.Repository}}:{{.Tag}}' | grep $PACKAGE_VERSION) | gzip > /mnt/images/docker_images.tgz
 
       - name: Build helm chart
         run: |
