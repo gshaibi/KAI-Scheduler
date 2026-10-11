@@ -59,12 +59,12 @@ jobs:
     needs: [ check-build-and-test-required ]
     if: needs.check-build-and-test-required.outputs.code == 'true'
     name: Validate & Test
-    runs-on: ubuntu-latest
+    runs-on: cncf-ubuntu-8-32-x86
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
 
-      # Restore-only: main (push-artifacts) saves Go caches. PR and merge-queue saves are unreachable
+      # Restore-only: main (push-artifacts) saves this cache. PR and merge-queue saves are unreachable
       # from other refs and evict main's entries from the repo cache quota.
       - name: Restore Go build cache (Docker-mounted)
         uses: actions/cache/restore@v6
@@ -80,12 +80,7 @@ jobs:
         uses: actions/setup-go@v7
         with:
           go-version: '1.26.8'
-          cache: false
-
-      - name: Share restored Go caches with host Go
-        run: |
-          echo "GOMODCACHE=$HOME/.cache/go-build-docker-gopath/pkg/mod" >> "$GITHUB_ENV"
-          echo "GOCACHE=$HOME/.cache/go-build-docker-gocache" >> "$GITHUB_ENV"
+          cache: true
 
       - name: Run validation
         run: make validate
@@ -181,7 +176,7 @@ jobs:
     needs: [ check-build-and-test-required ]
     if: needs.check-build-and-test-required.outputs.code == 'true'
     name: Build
-    runs-on: ubuntu-latest
+    runs-on: cncf-ubuntu-8-32-x86
     outputs:
       package_version: ${{ steps.package_version.outputs.PACKAGE_VERSION }}
     steps:
