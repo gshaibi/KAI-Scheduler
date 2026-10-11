@@ -59,7 +59,7 @@ jobs:
     needs: [ check-build-and-test-required ]
     if: needs.check-build-and-test-required.outputs.code == 'true'
     name: Validate & Test
-    runs-on: cncf-ubuntu-8-32-x86
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout code
         uses: actions/checkout@v7
@@ -174,7 +174,7 @@ jobs:
     needs: [ check-build-and-test-required ]
     if: needs.check-build-and-test-required.outputs.code == 'true'
     name: Build
-    runs-on: cncf-ubuntu-8-32-x86
+    runs-on: ubuntu-latest
     outputs:
       package_version: ${{ steps.package_version.outputs.PACKAGE_VERSION }}
     steps:
