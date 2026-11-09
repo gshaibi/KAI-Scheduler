@@ -1534,3 +1534,5 @@ func Test_NewIdleGpusFilter_NilScenario(t *testing.T) {
 		t.Fatalf("expected nil filter for nil scenario, got %#v", filter)
 	}
 }
+
+// Rehearsal no-op change to trigger the benchmark workflow.
