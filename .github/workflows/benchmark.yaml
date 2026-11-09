@@ -6,7 +6,7 @@ name: Performance Benchmarks
 on:
   pull_request:
     branches:
-      - main
+      - rehearsal/bench-gate-base
     types: [opened, reopened, synchronize]
     paths:
       - 'pkg/scheduler/**'
@@ -51,8 +51,8 @@ jobs:
 
       - name: Checkout main branch
         run: |
-          git fetch origin main
-          git checkout origin/main
+          git fetch origin rehearsal/bench-gate-base
+          git checkout origin/rehearsal/bench-gate-base
 
       - name: Run benchmarks on main branch
         run: make benchmark BENCH_OUTPUT=main-bench.txt
