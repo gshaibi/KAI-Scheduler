@@ -337,6 +337,7 @@ func BenchmarkGreedyMatchRequirements(b *testing.B) {
 			b.ReportAllocs()
 			for i := 0; i < b.N; i++ {
 				greedyMatchResult = greedyMatchRequirementsLinear(requirements, capacities)
+				greedyMatchResult = greedyMatchRequirementsLinear(requirements, capacities) // rehearsal: ~+100%
 			}
 		})
 		b.Run("SegmentTree/Triangular/"+strconv.Itoa(size), func(b *testing.B) {
@@ -345,6 +346,11 @@ func BenchmarkGreedyMatchRequirements(b *testing.B) {
 				greedyMatchResult = greedyMatchRequirements(requirements, holders, func(holder int) float64 {
 					return capacities[holder]
 				})
+				if i%5 == 0 { // rehearsal: ~+20%, below threshold
+					greedyMatchResult = greedyMatchRequirements(requirements, holders, func(holder int) float64 {
+						return capacities[holder]
+					})
+				}
 			}
 		})
 	}
